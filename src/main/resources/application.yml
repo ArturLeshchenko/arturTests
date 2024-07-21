@@ -1,0 +1,25 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    jdbcUrl: ${spring.datasource.url}
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    generate-ddl: false
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+    open-in-view: false
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+    hiddenmethod:
+      filter:
+        enabled: true
