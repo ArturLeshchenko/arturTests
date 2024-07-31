@@ -1,12 +1,14 @@
 package com.art.arturtests.service;
 
 import com.art.arturtests.Entity.Person;
+import com.art.arturtests.Entity.PersonVoenkomat;
 import com.art.arturtests.repository.PersonRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -32,7 +34,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public List<Person> getAll() {
-        return personRepository.findAll().stream().peek(k -> k.setName(k.getName())).collect(Collectors.toList());
+        return personRepository.findAll();
     }
 
     @Override
@@ -46,21 +48,19 @@ public class PersonServiceImpl implements PersonService {
         Optional<Person> optionalPerson = personRepository.findById(id);
         return personRepository.saveAndFlush(person);
     }
-
-    @Override
-    public List <Person> goVoenkom ()  {
-//       List <Person> personList = personRepository.findAll().stream().peek(k ->
-//               k.setName(k.getName())).collect(Collectors.toList());
-//       for (Person p : personList) {
-//           if ((p.getAge()>18)&&(p.getAge()<30)) {
-//                personRepository.saveAndFlush(p);
-//           }
-//       }
-       return personRepository.findAll().stream().
-               filter(p -> p.getAge() < 30)
-               .filter(p -> p.getAge() > 18)
-               .filter(p -> p.getSex().equals("mail"))
-               .peek(p -> p.setName(p.getName()))
-               .collect(Collectors.toList());
-    }
+//    @Transactional
+//    @Override
+//    public void setPropiska(Long personId, String propiska) {
+//        Person person = personRepository.findById(personId).orElseThrow(() -> new RuntimeException("Человек не найден"));
+//        PersonVoenkomat personVoenkomat = new PersonVoenkomat();
+//        personVoenkomat.setPropiska(propiska);
+//        personVoenkomat.setPerson(person);
+//        personVoenkomat.setId(personId);
+//        if ((person.getAge() > 18) && (person.getAge() < 30) && (person.getSex().equals("male"))) {
+//            person.setPersonVoenkomat(personVoenkomat);
+//        }
+//        else
+//            new RuntimeException("Нет людей, подходщих для военкомата");
+//
+//    }
 }

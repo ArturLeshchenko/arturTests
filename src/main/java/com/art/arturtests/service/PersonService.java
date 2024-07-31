@@ -11,5 +11,5 @@ public interface PersonService {
     List <Person> getAll ();
     Person getOnePerson (Long id) throws Exception;
     Person putPerson (Long id, Person person);
-    List <Person> goVoenkom () throws Exception;;
+   // void setPropiska (Long personId, String propiska);;
 }

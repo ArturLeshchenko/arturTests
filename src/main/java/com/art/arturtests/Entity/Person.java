@@ -6,7 +6,7 @@ import org.hibernate.annotations.Cascade;
 
 @Data
 @Entity
-@Table (name = "Persons")
+@Table (name = "person")
 public class Person {
 
 
@@ -27,7 +27,7 @@ public class Person {
     @Column(name = "sex")
     private String sex;
 
-    @OneToOne (mappedBy = "voenkom_person")
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    @OneToOne  (cascade = CascadeType.ALL, mappedBy = "person")
     private PersonVoenkomat personVoenkomat;
 }

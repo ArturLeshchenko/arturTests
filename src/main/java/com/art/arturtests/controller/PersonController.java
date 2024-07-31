@@ -47,8 +47,8 @@ public class PersonController {
     }
 
     @GetMapping ("/getAllVoenkomat")
-    public List<Person> goVoenkom() throws Exception {
-        return personService.goVoenkom();
+    public void goVoenkom() throws Exception {
+        //   personService.goVoenkom();
     }
 
 

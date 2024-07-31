@@ -6,26 +6,33 @@ import java.io.Serializable;
 
 @Data
 @Entity
-@Table (name = "PersonVoenkomats")
+@Table (name = "person_voenkomats")
 
 
 public class PersonVoenkomat implements Serializable {
     @Id
+    @Column (name = "voenkom_id")
+    private Long id;
     @OneToOne
-    @GeneratedValue (strategy = jakarta.persistence.GenerationType.IDENTITY)
-    @JoinColumn(name = "voenkom_id", referencedColumnName = "id")
-    private Person voenkom_person;
+    @MapsId
+    @JoinColumn (name = "voenkom_id")
+    private Person person;
 
-//    @Column (name = "voenkom_Имя")
-//    private String name;
-//
-//    @Column (name = "voenkom_Фамилия")
-//    private String secondName;
-//
-//    @Column ( name = "voenkom_Возрраст")
-//    private int age;
 
-    @Column (name = "voenkom_Прописка")
+
+    @Column (name = "voenkom_прописка")
     private String propiska;
+
+    @Column (name = "voenkom_служба")
+    private String slugba;
+
+    @Column (name = "voenkom_номер")
+    private Long number;
+
+    @Column (name = "voenkom_годность")
+    private String godnost;
+
+    @Column (name = "voenkom_вес")
+    private Integer ves;
 
 }
