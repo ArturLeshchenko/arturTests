@@ -20,36 +20,36 @@ public class PersonController {
     private final PersonService personService;
     private final PersonRepository personRepository;
 
-    @PostMapping ("/add")
+    @PostMapping ("/artur/person/add")
     public Person addPerson (@RequestBody Person person) {
         return personService.addPerson(person);
     }
 
-    @DeleteMapping ("/delete/{id}")
+    @DeleteMapping ("/person/delete/{id}")
     public void deletePerson (@PathVariable Long id) throws Exception {
          personService.deletePerson(id);
     }
 
 
-    @PutMapping("put/{id}")
+    @PutMapping("/person/put/{id}")
     public Person updateUser(@PathVariable Long id, @RequestBody Person person) {
         return personService.putPerson(id,person);
     }
 
-    @GetMapping ("/getAll")
+    @GetMapping ("/person/getAll")
     public List<Person> getAllPerson() {
         return  personService.getAll();
     }
 
-    @GetMapping ("/getOne/{id}")
+    @GetMapping ("/person/getOne/{id}")
     public Person getOnePerson(@PathVariable Long id) throws Exception {
         return personService.getOnePerson (id);
     }
 
-    @GetMapping ("/getAllVoenkomat")
-    public void goVoenkom() throws Exception {
-        //   personService.goVoenkom();
-    }
+//    @GetMapping ("/artur/getAllVoenkomat")
+//    public void goVoenkom() throws Exception {
+//        //   personService.goVoenkom();
+//    }
 
 
 }

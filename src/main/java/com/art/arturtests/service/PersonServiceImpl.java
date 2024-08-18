@@ -3,6 +3,7 @@ package com.art.arturtests.service;
 import com.art.arturtests.Entity.Person;
 import com.art.arturtests.Entity.PersonVoenkomat;
 import com.art.arturtests.repository.PersonRepository;
+import com.art.arturtests.repository.PersonVoenkomRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -19,17 +20,23 @@ import java.util.stream.Collectors;
 public class PersonServiceImpl implements PersonService {
 
     private final PersonRepository personRepository;
+    private final PersonVoenkomRepository personVoenkomRepository;
 
 
     @Override
     public Person addPerson(Person person) {
-        return personRepository.saveAndFlush(person);
+//        String godnost = null;
+//        proverkaNaGodnost(person);
+//        if (godnost.equals("годен")) {
+//            personVoenkomRepository.saveAndFlush(new PersonVoenkomat());
+//        } else {
+//        }
+        return  personRepository.saveAndFlush(person);
     }
 
     @Override
     public void deletePerson(Long id) throws Exception {
         personRepository.deleteById(id);
-
     }
 
     @Override
@@ -47,6 +54,19 @@ public class PersonServiceImpl implements PersonService {
     public Person putPerson(Long id, Person person) {
         Optional<Person> optionalPerson = personRepository.findById(id);
         return personRepository.saveAndFlush(person);
+    }
+
+    private String proverkaNaGodnost(Person person) {
+        String godnost = null;
+        if ((person.getAge() > 18)
+                && (person.getAge() < 30)
+                && (person.getSex().equals("male")
+                && (person.getHealth().equals("здоров")))) {
+            godnost = "годен";
+        }
+        else
+            godnost = "не годен";
+        return godnost;
     }
 //    @Transactional
 //    @Override

@@ -4,10 +4,12 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.Cascade;
 
+import java.io.Serializable;
+
 @Data
 @Entity
 @Table (name = "person")
-public class Person {
+public class Person implements Serializable {
 
 
     @Id
@@ -24,8 +26,15 @@ public class Person {
     @Column ( name = "Возрраст")
     private int age;
 
-    @Column(name = "sex")
+    @Column(name = "Пол")
     private String sex;
+
+    @Column ( name = "Прописка")
+    private String propiska;
+
+    @Column ( name = "Здоровье")
+    private String health;
+
 
     @PrimaryKeyJoinColumn
     @OneToOne  (cascade = CascadeType.ALL, mappedBy = "person")
