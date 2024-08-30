@@ -20,7 +20,6 @@ public class PersonVoenkomat implements Serializable {
     @JoinColumn(name = "id", referencedColumnName = "id")
     private Person person;
 
-
     @Column(name = "voenkom_прописка")
     private String propiska;
 

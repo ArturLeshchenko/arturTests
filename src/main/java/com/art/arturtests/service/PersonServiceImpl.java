@@ -5,15 +5,10 @@ import com.art.arturtests.Entity.PersonVoenkomat;
 import com.art.arturtests.repository.PersonRepository;
 import com.art.arturtests.repository.PersonVoenkomRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -22,16 +17,15 @@ public class PersonServiceImpl implements PersonService {
     private final PersonRepository personRepository;
     private final PersonVoenkomRepository personVoenkomRepository;
 
-
     @Override
     public Person addPerson(Person person) {
-//        String godnost = null;
-//        proverkaNaGodnost(person);
-//        if (godnost.equals("годен")) {
-//            personVoenkomRepository.saveAndFlush(new PersonVoenkomat());
-//        } else {
-//        }
-        return  personRepository.saveAndFlush(person);
+        PersonVoenkomat personVoenkomat = new PersonVoenkomat();
+        String godnost = null;
+        proverkaNaGodnost(person);
+        if (godnost.equals("годен")) {
+            personVoenkomRepository.saveAndFlush(new PersonVoenkomat());
+        }
+        return personRepository.saveAndFlush(person);
     }
 
     @Override
@@ -56,15 +50,15 @@ public class PersonServiceImpl implements PersonService {
         return personRepository.saveAndFlush(person);
     }
 
-    private String proverkaNaGodnost(Person person) {
+    @Override
+    public String proverkaNaGodnost(Person person) {
         String godnost = null;
-        if ((person.getAge() > 18)
+        if ((person.getAge() >= 18)
                 && (person.getAge() < 30)
                 && (person.getSex().equals("male")
                 && (person.getHealth().equals("здоров")))) {
             godnost = "годен";
-        }
-        else
+        } else
             godnost = "не годен";
         return godnost;
     }
@@ -81,6 +75,5 @@ public class PersonServiceImpl implements PersonService {
 //        }
 //        else
 //            new RuntimeException("Нет людей, подходщих для военкомата");
-//
 //    }
 }
