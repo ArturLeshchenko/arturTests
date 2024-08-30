@@ -32,7 +32,7 @@ public class PersonVoenkomServiceImpl  implements PersonVoenkomService {
         personVoenkomat.setPropiska(person.getPropiska());
         personVoenkomat.setGodnost(proverkaNaGodnost(person));
         personVoenkomat.setId(personId);
-        person.setPersonVoenkomat(personVoenkomat);
+       // person.setPersonVoenkomat(personVoenkomat);
         }
 
 

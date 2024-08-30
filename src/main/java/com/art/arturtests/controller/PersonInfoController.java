@@ -10,14 +10,14 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping ("/artur")
+@RequestMapping("/artur")
 public class PersonInfoController {
 
     private final PersonVoenkomService personVoenkomService;
 
-    @GetMapping ("/personVoenkom/getAll")
+    @GetMapping("/personVoenkom/getAll")
     public List<PersonVoenkomat> getAllPersonVoenkomat() {
-        return  personVoenkomService.getAll();
+        return personVoenkomService.getAll();
     }
 
     @PostMapping("/personVoenkom/{id}/")
