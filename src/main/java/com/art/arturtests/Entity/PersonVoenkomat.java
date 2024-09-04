@@ -9,9 +9,9 @@ import java.io.Serializable;
 @Entity
 @Table(name = "person_voenkomats")
 
-
 public class PersonVoenkomat implements Serializable {
     @Id
+    //@GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
     @Column(name = "voenkom_id")
     private Long id;
 

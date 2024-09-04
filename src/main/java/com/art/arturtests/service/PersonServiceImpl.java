@@ -4,6 +4,7 @@ import com.art.arturtests.Entity.Person;
 import com.art.arturtests.Entity.PersonVoenkomat;
 import com.art.arturtests.repository.PersonRepository;
 import com.art.arturtests.repository.PersonVoenkomRepository;
+import jakarta.persistence.Transient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,10 +21,12 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public Person addPerson(Person person) {
         PersonVoenkomat personVoenkomat = new PersonVoenkomat();
-        String godnost = null;
-        proverkaNaGodnost(person);
+        String godnost =proverkaNaGodnost(person);
         if (godnost.equals("годен")) {
-            personVoenkomRepository.saveAndFlush(new PersonVoenkomat());
+            personVoenkomat.setPropiska(person.getPropiska());
+            personVoenkomat.setGodnost(godnost);
+            personVoenkomat.setId(person.getId());
+            personVoenkomRepository.saveAndFlush(personVoenkomat);
         }
         return personRepository.saveAndFlush(person);
     }

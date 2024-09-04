@@ -16,12 +16,12 @@ public class PersonInfoController {
     private final PersonVoenkomService personVoenkomService;
 
     @GetMapping("/personVoenkom/getAll")
-    public List<PersonVoenkomat> getAllPersonVoenkomat() {
+    public List<PersonVoenkomat> getAllPersonVoenkomat()  {
         return personVoenkomService.getAll();
     }
 
     @PostMapping("/personVoenkom/{id}/")
-    public void setInfo(@PathVariable("id") Long personId, @RequestBody Person person) {
+    public void setInfo(@PathVariable("id") Long personId, @RequestBody Person person) throws Exception {
 
     }
 }

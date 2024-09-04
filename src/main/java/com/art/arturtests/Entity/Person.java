@@ -21,7 +21,7 @@ public class Person implements Serializable {
     @Column(name = "Фамилия")
     private String secondName;
 
-    @Column(name = "Возрраст")
+    @Column(name = "Возраст")
     private int age;
 
     @Column(name = "Пол")
@@ -33,6 +33,7 @@ public class Person implements Serializable {
     @Column(name = "Здоровье")
     private String health;
 
+    @Transient
     @PrimaryKeyJoinColumn
     @OneToOne  (cascade = CascadeType.ALL, mappedBy = "person")
     private PersonVoenkomat personVoenkomat;

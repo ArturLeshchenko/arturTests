@@ -16,7 +16,7 @@ public class PersonController {
     private final PersonService personService;
     private final PersonRepository personRepository;
 
-    @PostMapping("/artur/person/add")
+    @PostMapping("/person/add")
     public Person addPerson(@RequestBody Person person) {
         return personService.addPerson(person);
     }
